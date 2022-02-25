@@ -1,0 +1,26 @@
+---
+title: "String and Date manipulation"
+author: "Vy Tran"
+date: "2/25/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Date
+```{r}
+data$date = as.Date(dat$date, format="%Y%m%d")
+data$date = as.Date(dat$date, format="%Y-%m-%d")
+```
+String
+```{r}
+dat = dat %>%
+  mutate(new_varible = strsplit(string_variable, "[/]") %>% 
+            as.data.frame() %>% 
+            t %>% 
+            data.frame(stringsAsFactors = F) %>% 
+            pull(5) # Indicate that we want to pull the 5th part of the string. 
+         ) 
+```
